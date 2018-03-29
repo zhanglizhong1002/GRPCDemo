@@ -1,0 +1,74 @@
+syntax = "proto3"; 
+option java_package = "com.wolf.business.huibao.grpcservice";  //设置java对应的package  
+option java_outer_classname = "HuibaoHome";
+option java_multiple_files = true; //建议设置为true，这样会每个对象放在一个文件中，否则所有对象都在一个java文件中
+option objc_class_prefix = "ML";
+
+
+package grpcservice;
+
+
+//banner图
+message Banner{
+    string id = 1;
+	string url = 2;
+}
+
+//预备banner图
+message AskBanner{
+    string id = 1;
+	string url = 2;
+}
+
+//标签
+message SmartSkill{
+	string skillId = 1;
+	string skillName = 2;
+	string imgUrl = 3;
+}
+
+//任务---
+message Task{
+   string id = 1;
+   string userName = 2;
+   string jobDesc = 3;
+}
+
+//厂商推荐
+message MaterialSkill{
+	string skillId = 1;
+	string skillName = 2;
+	string imgUrl = 3;	
+}
+
+//品牌街
+message BrandStreet{
+     string companyId = 1;
+     string logo = 2;
+}
+
+message HomeRequest{
+   string msg = 1;
+}
+
+message Hot{
+   string skillId = 1;
+   string skillName = 2;
+   string imgUrl = 3;
+}
+
+//首页数据结构
+message HomeResponse{
+  repeated Banner banner = 1;
+  repeated AskBanner askBanner = 2;
+  repeated SmartSkill smartSkill = 3;
+  repeated Task task = 4;
+  repeated MaterialSkill  materialSkill = 5;
+  repeated BrandStreet brandStreet = 6;
+  repeated Hot hot = 7;
+}
+
+service HomeIndex{
+   //首页加载时请求后台service
+   rpc GetHomeIndex(HomeRequest) returns(HomeResponse){}
+}

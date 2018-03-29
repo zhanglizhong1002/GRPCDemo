@@ -1,0 +1,6 @@
+framework module GRPCDemo {
+  umbrella header "GRPCDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
